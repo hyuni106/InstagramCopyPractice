@@ -20,6 +20,7 @@
             android:src="@mipmap/ic_launcher_round"/>
 
         <TextView
+            android:id="@+id/writerNickNameTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -41,9 +42,10 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@mipmap/ic_launcher" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,6 +65,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginLeft="5dp"
+            android:focusable="false"
             android:src="@mipmap/ic_launcher_round"/>
 
         <ImageView
@@ -98,6 +101,7 @@
         android:padding="15dp">
 
         <TextView
+            android:id="@+id/contentTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="wlqrkffo vlrhsgowhffu wlqrkrhtlvdj"/>

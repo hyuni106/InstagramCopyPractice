@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -40,7 +41,15 @@ public class NewsFeedAdapter extends ArrayAdapter<PostingData> {
         if (row == null) {
             row = inf.inflate(R.layout.newsfeed_list_item, null);
         }
+
+        PostingData data = mList.get(position);
+
+        TextView writerNickNameTxt = (TextView)row.findViewById(R.id.writerNickNameTxt);
+        TextView contentTxt = (TextView)row.findViewById(R.id.contentTxt);
         ImageView replyImgView = (ImageView) row.findViewById(R.id.replyImgView);
+
+        writerNickNameTxt.setText(data.getWriterData().getNickName());
+        contentTxt.setText(data.getContent());
 
         replyImgView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,8 +62,4 @@ public class NewsFeedAdapter extends ArrayAdapter<PostingData> {
         return row;
     }
 
-    @Override
-    public int getCount() {
-        return 20;
-    }
 }

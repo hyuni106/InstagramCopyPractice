@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".ReplyListActivity"></activity>
+        <activity android:name=".ReplyListActivity" />
+        <activity android:name=".ViewPostActivity"></activity>
     </application>
 
 </manifest>

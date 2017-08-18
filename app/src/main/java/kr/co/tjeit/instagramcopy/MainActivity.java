@@ -3,7 +3,9 @@ package kr.co.tjeit.instagramcopy;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,6 +20,7 @@ import kr.co.tjeit.instagramcopy.adapter.NotificationAdapter;
 import kr.co.tjeit.instagramcopy.data.NotificationData;
 import kr.co.tjeit.instagramcopy.data.PostingData;
 import kr.co.tjeit.instagramcopy.util.ContextUtil;
+import kr.co.tjeit.instagramcopy.util.GlobalData;
 
 public class MainActivity extends BaseActivity {
 
@@ -31,13 +34,10 @@ public class MainActivity extends BaseActivity {
     private android.widget.LinearLayout newsfeedLayout;
 
     NewsFeedAdapter newsFeedAdapter;
-    List<PostingData> postingDataList = new ArrayList<>();
     NotificationAdapter notificationAdapter;
-    List<NotificationData> notificationDataList = new ArrayList<>();
 
     private ImageView instaLogoImg;
     private android.widget.TextView profileTxt;
-    private android.widget.TextView textView;
     private ListView profileListView;
     private LinearLayout profileLayout;
     private TextView notiTxt;
@@ -61,6 +61,26 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void setupEvents() {
+        newsfeedListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                PostingData data = GlobalData.postingDataList.get(position);
+                Intent intent = new Intent(mContext, ViewPostActivity.class);
+                intent.putExtra("data", data);
+                startActivity(intent);
+            }
+        });
+
+        notiListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                PostingData data = GlobalData.myNotiDataList.get(position).getPost();
+                Intent intent = new Intent(mContext, ViewPostActivity.class);
+                intent.putExtra("data", data);
+                startActivity(intent);
+            }
+        });
+
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,10 +162,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void setValues() {
-        newsFeedAdapter = new NewsFeedAdapter(mContext, postingDataList);
+        newsFeedAdapter = new NewsFeedAdapter(mContext, GlobalData.postingDataList);
         newsfeedListView.setAdapter(newsFeedAdapter);
 
-        notificationAdapter = new NotificationAdapter(mContext, notificationDataList);
+        notificationAdapter = new NotificationAdapter(mContext, GlobalData.myNotiDataList);
         notiListView.setAdapter(notificationAdapter);
     }
 
@@ -167,7 +187,6 @@ public class MainActivity extends BaseActivity {
         this.followerTxt = (TextView) findViewById(R.id.followerTxt);
         this.profileLayout = (LinearLayout) findViewById(R.id.profileLayout);
         this.profileListView = (ListView) findViewById(R.id.profileListView);
-        this.textView = (TextView) findViewById(R.id.textView);
         this.newsfeedLayout = (LinearLayout) findViewById(R.id.newsfeedLayout);
         this.newsfeedListView = (ListView) findViewById(R.id.newsfeedListView);
         this.notiTxt = (TextView) findViewById(R.id.notiTxt);

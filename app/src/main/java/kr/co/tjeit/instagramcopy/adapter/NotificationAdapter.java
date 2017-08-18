@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.List;
+import java.util.Locale;
 
 import kr.co.tjeit.instagramcopy.R;
 import kr.co.tjeit.instagramcopy.ReplyListActivity;
@@ -42,11 +44,21 @@ public class NotificationAdapter extends ArrayAdapter<NotificationData> {
             row = inf.inflate(R.layout.notification_list_item, null);
         }
 
-        return row;
-    }
+        NotificationData data = mList.get(position);
+        TextView nicknameTxt = (TextView) row.findViewById(R.id.nicknameTxt);
+        TextView notificationTxt = (TextView) row.findViewById(R.id.notificationTxt);
 
-    @Override
-    public int getCount() {
-        return 20;
+        nicknameTxt.setText(data.getActor().getNickName());
+
+        // %d > int
+        // %f > float, double
+        // %s > String
+        if (data.getActionType().equals("like")) {
+            notificationTxt.setText("님이 게시물을 좋아합니다.");
+        } else {
+            notificationTxt.setText("님이 게시물에 댓글을 남겼습니다.");
+        }
+
+        return row;
     }
 }

@@ -3,6 +3,7 @@ package kr.co.tjeit.instagramcopy.util;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import kr.co.tjeit.instagramcopy.data.NotificationData;
@@ -24,6 +25,43 @@ import kr.co.tjeit.instagramcopy.data.UserData;
 
 //    3. 로그인 한 사람의 정보를 저장하는 용도.
 public class GlobalData {
+    public static List<UserData> userDataList = new ArrayList<>();
     public static List<PostingData> postingDataList = new ArrayList<>();
     public static List<NotificationData> myNotiDataList  = new ArrayList<>();
+
+    // 임시의 더미데이터들을 추가하는 메소드
+    public static void initGlobalData() {
+        // GlobalData에 자료들을 추가한다
+        // 더미데이터 : 임시데이터, 쓰레기데이터
+
+        userDataList.clear();
+        userDataList.add(new UserData(1, "A사용자", "aa_aaa", "tmpUrl"));
+        userDataList.add(new UserData(2, "B사용자", "bb_bbb", "tmpUrl"));
+        userDataList.add(new UserData(3, "C사용자", "cc_ccc", "tmpUrl"));
+        userDataList.add(new UserData(4, "D사용자", "dd_ddd", "tmpUrl"));
+        userDataList.add(new UserData(5, "E사용자", "ee_eee", "tmpUrl"));
+        userDataList.add(new UserData(6, "F사용자", "ff_fff", "tmpUrl"));
+        userDataList.add(new UserData(7, "G사용자", "gg_ggg", "tmpUrl"));
+        userDataList.add(new UserData(8, "H사용자", "hh_hhh", "tmpUrl"));
+
+        // 포스팅 데이터 목록 채워넣기
+        postingDataList.clear();
+        postingDataList.add(new PostingData(1, "TmpURL", "1번 게시글입니다.", userDataList.get(0)));
+        postingDataList.add(new PostingData(2, "TmpURL", "2번 게시글입니다.", userDataList.get(1)));
+        postingDataList.add(new PostingData(3, "TmpURL", "3번 게시글입니다.", userDataList.get(2)));
+        postingDataList.add(new PostingData(4, "TmpURL", "4번 게시글입니다.", userDataList.get(3)));
+        postingDataList.add(new PostingData(5, "TmpURL", "5번 게시글입니다.", userDataList.get(4)));
+        postingDataList.add(new PostingData(6, "TmpURL", "6번 게시글입니다.", userDataList.get(5)));
+
+        // 알림 데이터 채워넣기
+        myNotiDataList.clear();
+        myNotiDataList.add(new NotificationData(1, Calendar.getInstance(), "like", userDataList.get(0), postingDataList.get(0)));
+        myNotiDataList.add(new NotificationData(2, Calendar.getInstance(), "reply", userDataList.get(1), postingDataList.get(1)));
+        myNotiDataList.add(new NotificationData(3, Calendar.getInstance(), "like", userDataList.get(2), postingDataList.get(2)));
+        myNotiDataList.add(new NotificationData(4, Calendar.getInstance(), "like", userDataList.get(3), postingDataList.get(3)));
+        myNotiDataList.add(new NotificationData(5, Calendar.getInstance(), "reply", userDataList.get(4), postingDataList.get(4)));
+        myNotiDataList.add(new NotificationData(6, Calendar.getInstance(), "reply", userDataList.get(5), postingDataList.get(5)));
+        myNotiDataList.add(new NotificationData(7, Calendar.getInstance(), "like", userDataList.get(6), postingDataList.get(0)));
+        myNotiDataList.add(new NotificationData(8, Calendar.getInstance(), "reply", userDataList.get(7), postingDataList.get(1)));
+    }
 }
