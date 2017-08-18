@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.co.tjeit.instagramcopy.data.NotificationData;
 import kr.co.tjeit.instagramcopy.data.PostingData;
+import kr.co.tjeit.instagramcopy.data.ReplyData;
 import kr.co.tjeit.instagramcopy.data.UserData;
 
 /**
@@ -28,6 +29,7 @@ public class GlobalData {
     public static List<UserData> userDataList = new ArrayList<>();
     public static List<PostingData> postingDataList = new ArrayList<>();
     public static List<NotificationData> myNotiDataList  = new ArrayList<>();
+    public static List<ReplyData> replyDataList = new ArrayList<>();
 
     // 임시의 더미데이터들을 추가하는 메소드
     public static void initGlobalData() {
@@ -47,7 +49,19 @@ public class GlobalData {
         // 포스팅 데이터 목록 채워넣기
         postingDataList.clear();
         postingDataList.add(new PostingData(1, "TmpURL", "1번 게시글입니다.", userDataList.get(0)));
+        // 첫 게시글의 댓글 채워넣기
+        postingDataList.get(0).getReplies().add(new ReplyData(1, "1번게시글 댓글1", Calendar.getInstance(), userDataList.get(0), -1));
+        postingDataList.get(0).getReplies().add(new ReplyData(2, "1번게시글 댓글2", Calendar.getInstance(), userDataList.get(3), -1));
+        postingDataList.get(0).getReplies().add(new ReplyData(3, "1번게시글 댓글3", Calendar.getInstance(), userDataList.get(3), -1));
+        postingDataList.get(0).getReplies().add(new ReplyData(4, "1번게시글 댓글4", Calendar.getInstance(), userDataList.get(0), -1));
+        postingDataList.get(0).getReplies().add(new ReplyData(5, "1번게시글 댓글5", Calendar.getInstance(), userDataList.get(1), -1));
+
         postingDataList.add(new PostingData(2, "TmpURL", "2번 게시글입니다.", userDataList.get(1)));
+        postingDataList.get(1).getReplies().add(new ReplyData(6, "2번게시글 댓글1", Calendar.getInstance(), userDataList.get(1), -1));
+        postingDataList.get(1).getReplies().add(new ReplyData(7, "2번게시글 댓글2", Calendar.getInstance(), userDataList.get(6), -1));
+        postingDataList.get(1).getReplies().add(new ReplyData(8, "2번게시글 댓글3", Calendar.getInstance(), userDataList.get(7), -1));
+        postingDataList.get(1).getReplies().add(new ReplyData(9, "2번게시글 댓글4", Calendar.getInstance(), userDataList.get(4), -1));
+
         postingDataList.add(new PostingData(3, "TmpURL", "3번 게시글입니다.", userDataList.get(2)));
         postingDataList.add(new PostingData(4, "TmpURL", "4번 게시글입니다.", userDataList.get(3)));
         postingDataList.add(new PostingData(5, "TmpURL", "5번 게시글입니다.", userDataList.get(4)));
@@ -63,5 +77,6 @@ public class GlobalData {
         myNotiDataList.add(new NotificationData(6, Calendar.getInstance(), "reply", userDataList.get(5), postingDataList.get(5)));
         myNotiDataList.add(new NotificationData(7, Calendar.getInstance(), "like", userDataList.get(6), postingDataList.get(0)));
         myNotiDataList.add(new NotificationData(8, Calendar.getInstance(), "reply", userDataList.get(7), postingDataList.get(1)));
+
     }
 }

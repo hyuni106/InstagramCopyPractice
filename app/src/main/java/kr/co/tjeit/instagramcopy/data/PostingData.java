@@ -27,7 +27,19 @@ public class PostingData implements Serializable {
     // 게시글 -> 해시태그 (N)
     private List<String> hashTags = new ArrayList<>();
 
+    private List<ReplyData> replies = new ArrayList<>();
+
     public PostingData() {
+    }
+
+    public PostingData(int postingId, String imageURL, String content, UserData writerData, List<UserData> likeUsers, List<String> hashTags, List<ReplyData> replies) {
+        this.postingId = postingId;
+        this.imageURL = imageURL;
+        this.content = content;
+        this.writerData = writerData;
+        this.likeUsers = likeUsers;
+        this.hashTags = hashTags;
+        this.replies = replies;
     }
 
     public PostingData(int postingId, String imageURL, String content, UserData writerData) {
@@ -35,6 +47,14 @@ public class PostingData implements Serializable {
         this.imageURL = imageURL;
         this.content = content;
         this.writerData = writerData;
+    }
+
+    public List<ReplyData> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(List<ReplyData> replies) {
+        this.replies = replies;
     }
 
     public int getPostingId() {

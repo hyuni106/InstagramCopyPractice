@@ -39,20 +39,24 @@ public class ViewPostActivity extends BaseActivity {
             }
         });
 
-        allCommentTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, ReplyListActivity.class);
-                startActivity(intent);
-            }
-        });
-
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+        View.OnClickListener intentReply = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ReplyListActivity.class);
+                intent.putExtra("replies", postingData);
+                startActivity(intent);
+            }
+        };
+
+        replyImgView.setOnClickListener(intentReply);
+        allCommentTxt.setOnClickListener(intentReply);
     }
 
     @Override

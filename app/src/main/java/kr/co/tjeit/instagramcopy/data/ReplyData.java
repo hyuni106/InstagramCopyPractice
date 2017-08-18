@@ -25,4 +25,63 @@ public class ReplyData implements Serializable {
     // id가 유효하지 않은 값 (Ex. -1) 이면 부모가 없는 원본 댓글임을 명시
     // id가 유효한 값 (Ex. > 1) 이면 부모 댓글에 매달려있는 답글임을 명시
     private int parentReplyId;
+
+    public ReplyData() {
+    }
+
+    public ReplyData(int replyId, String content, Calendar createdAt, UserData writerData, int parentReplyId) {
+        this.replyId = replyId;
+        this.content = content;
+        this.createdAt = createdAt;
+        this.writerData = writerData;
+        this.parentReplyId = parentReplyId;
+    }
+
+    public int getReplyId() {
+        return replyId;
+    }
+
+    public void setReplyId(int replyId) {
+        this.replyId = replyId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Calendar getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Calendar createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public UserData getWriterData() {
+        return writerData;
+    }
+
+    public void setWriterData(UserData writerData) {
+        this.writerData = writerData;
+    }
+
+    public List<UserData> getLikeUsers() {
+        return likeUsers;
+    }
+
+    public void setLikeUsers(List<UserData> likeUsers) {
+        this.likeUsers = likeUsers;
+    }
+
+    public int getParentReplyId() {
+        return parentReplyId;
+    }
+
+    public void setParentReplyId(int parentReplyId) {
+        this.parentReplyId = parentReplyId;
+    }
 }

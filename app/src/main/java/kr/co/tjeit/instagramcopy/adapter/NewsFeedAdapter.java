@@ -42,7 +42,7 @@ public class NewsFeedAdapter extends ArrayAdapter<PostingData> {
             row = inf.inflate(R.layout.newsfeed_list_item, null);
         }
 
-        PostingData data = mList.get(position);
+        final PostingData data = mList.get(position);
 
         TextView writerNickNameTxt = (TextView)row.findViewById(R.id.writerNickNameTxt);
         TextView contentTxt = (TextView)row.findViewById(R.id.contentTxt);
@@ -55,6 +55,7 @@ public class NewsFeedAdapter extends ArrayAdapter<PostingData> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, ReplyListActivity.class);
+                intent.putExtra("replies", data);
                 mContext.startActivity(intent);
             }
         });
